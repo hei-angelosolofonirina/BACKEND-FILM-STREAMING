@@ -26,4 +26,10 @@ public class Film implements Serializable {
 
     @Column(name = "description")
     private String description;
+
+    @Column
+    private double price;
+
+    @Column(nullable = false)
+    private int note;
 }

@@ -1,9 +1,11 @@
 package com.example.backendfinalproject.model;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 @Entity
@@ -20,8 +22,9 @@ public class Commentaire implements Serializable {
     private int id;
     @Column(nullable = false)
     private String content;
+    @CreationTimestamp
     @Column(name = "posting_date",nullable = false)
-    private Date postingDate;
+    private Instant postingDate;
     @ManyToOne
     private Film film;
 }
