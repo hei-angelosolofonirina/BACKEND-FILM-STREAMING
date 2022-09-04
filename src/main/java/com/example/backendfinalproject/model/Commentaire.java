@@ -7,6 +7,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Data
@@ -25,6 +27,8 @@ public class Commentaire implements Serializable {
     @CreationTimestamp
     @Column(name = "posting_date",nullable = false)
     private Instant postingDate;
+    @OneToMany
+    private List<Client> client;
     @ManyToOne
     private Film film;
 }
