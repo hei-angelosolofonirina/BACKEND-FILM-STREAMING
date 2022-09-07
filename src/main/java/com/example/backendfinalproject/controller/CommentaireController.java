@@ -1,26 +1,34 @@
 package com.example.backendfinalproject.controller;
 
 import com.example.backendfinalproject.model.Commentaire;
-import com.example.backendfinalproject.repository.CommentaireRepository;
+import com.example.backendfinalproject.service.CommentaireService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 public class CommentaireController {
     @Autowired
-    CommentaireRepository commentaireRepository;
+    CommentaireService commentaireService;
+    @PostMapping("/commentaire")
+    public Commentaire postComs(@RequestBody Commentaire commentaire){
+        return commentaireService.createComs(commentaire);
+    }
+    @PostMapping("/commentaires")
+    public List<Commentaire> postManyComs(@Validated @RequestBody List<Commentaire> listComs){
+        return commentaireService.createManyComs(listComs);
+    }
 
     @GetMapping("/commentaire")
     public List<Commentaire> getAllComs(){
-        return commentaireRepository.findAll();
+        return commentaireService.getAllCommentaire();
     }
     @GetMapping("/commentaire/{id}")
-    public Optional<Commentaire> getComsById(@PathVariable Integer id){
-        return commentaireRepository.findById(id);
+    public Optional<Commentaire> getByIdComs(@PathVariable Integer id){
+        return commentaireService.getByCommentaireId(id);
     }
 }

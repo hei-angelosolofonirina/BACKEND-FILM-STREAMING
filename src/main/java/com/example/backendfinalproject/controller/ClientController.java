@@ -1,20 +1,34 @@
 package com.example.backendfinalproject.controller;
 
 import com.example.backendfinalproject.model.Client;
-import com.example.backendfinalproject.repository.ClientRepository;
 import com.example.backendfinalproject.service.ClientService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ClientController {
-    @Autowired
-    ClientService clientService;
+    private final ClientService clientService;
+
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
+    }
+
+    @PostMapping("/client")
+    public Client createClient(@RequestBody Client client){
+        return clientService.addClient(client);
+    }
+    @PostMapping("/clients")
+    public List<Client> addManyClients(@RequestBody List<Client> listClient){
+        return clientService.createManyClient(listClient);}
     @GetMapping("/clients")
     public List<Client> getAllClients(){
         return clientService.getAllClient();
     }
+    @GetMapping("/clients/{id}")
+    public Optional<Client> getByClientId(@PathVariable Long id){
+        return clientService.getByIdClient(id);
+    }
+
 }

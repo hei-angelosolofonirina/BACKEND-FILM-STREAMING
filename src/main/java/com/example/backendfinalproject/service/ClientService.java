@@ -1,12 +1,16 @@
 package com.example.backendfinalproject.service;
 
-import com.example.backendfinalproject.model.Abonnement;
+
 import com.example.backendfinalproject.model.Client;
+import com.example.backendfinalproject.model.Commentaire;
 import com.example.backendfinalproject.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,12 +18,20 @@ import java.util.Optional;
 public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
-    @GetMapping("/clients")
+
+    public Client addClient(Client client){
+        return clientRepository.save(client);
+    }
+    @Transactional
+    public List<Client> createManyClient(List<Client> listClient){
+        return clientRepository.saveAll(listClient);
+    }
+
     public List<Client> getAllClient(){
        return clientRepository.findAll();
     }
-    @GetMapping("/abonnement/{id}")
-    public Optional<Client> getByClientId(Long id){
+
+    public Optional<Client> getByIdClient(Long id){
         return clientRepository.findById(id);
     }
 }

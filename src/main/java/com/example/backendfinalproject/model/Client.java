@@ -32,5 +32,8 @@ public class Client {
     @Column(name = "password",nullable = false,unique = true)
     private String password;
 
+    @OneToOne
+    private Abonnement abonnement;
+
 }
 
