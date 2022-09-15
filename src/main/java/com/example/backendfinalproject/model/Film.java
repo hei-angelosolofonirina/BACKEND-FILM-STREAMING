@@ -27,6 +27,9 @@ public class Film implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name="duration")
+    private String duration;
+    
     @Column
     private double price;
 

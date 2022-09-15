@@ -27,6 +27,10 @@ public class AbonnementController {
     public List<Abonnement> getAllAbonnement(){
         return abonnementService.getAllAbonnements();
     }
+    @DeleteMapping("/abonnements")
+    public void deleteAbonnementById(Integer id){
+        return abonnementService.deleteById(id)
+    }
     @GetMapping("/abonnements/{id}")
     public Optional<Abonnement> getAbonById(Integer id){
         return abonnementService.getAbonnementById(id);

@@ -30,6 +30,9 @@ public class ClientService {
     public List<Client> getAllClient(){
        return clientRepository.findAll();
     }
+    public void deleteById(Integer id) {
+    clientRepository.deleteById(id);
+    }
 
     public Optional<Client> getByIdClient(Long id){
         return clientRepository.findById(id);

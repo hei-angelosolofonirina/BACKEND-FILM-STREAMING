@@ -25,6 +25,10 @@ public class CommentaireService {
     public Commentaire createComs(Commentaire commentaire){
         return commentaireRepository.save(commentaire);
     }
+    
+    public void deleteById(Integer id) {
+    commentaireRepository.deleteById(id);
+    }
     @Transactional
     public List<Commentaire> createManyComs(List<Commentaire> listComs){
         return commentaireRepository.saveAll(listComs);

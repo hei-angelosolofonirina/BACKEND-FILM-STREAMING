@@ -28,6 +28,11 @@ public class AchatFilmController {
         return achatFilmService.readAllAchat();
     }
 
+    @DeleteMapping("achatFilms")
+    public void deleteById(Integer id) {
+    return 
+    }
+
     @GetMapping("/achatfilms/{id}")
     public Optional<AchatFilm> getById(@PathVariable Long id){
         return achatFilmService.readAchatById(id);

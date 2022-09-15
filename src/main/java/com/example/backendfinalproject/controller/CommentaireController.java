@@ -27,6 +27,12 @@ public class CommentaireController {
     public List<Commentaire> getAllComs(){
         return commentaireService.getAllCommentaire();
     }
+
+    @DeleteMapping("/commentaires")
+    public void deleteById(Integer id) {
+    commentaireRepository.deleteById(id);
+    }
+    
     @GetMapping("/commentaire/{id}")
     public Optional<Commentaire> getByIdComs(@PathVariable Integer id){
         return commentaireService.getByCommentaireId(id);
